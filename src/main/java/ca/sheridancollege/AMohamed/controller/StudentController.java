@@ -82,9 +82,28 @@ public String deleteStudentById(Model model,@PathVariable Long id) {
 	@GetMapping("/editStudentById/{id}")
 public String editStudentById(Model model,@PathVariable Long id) {
 	
+		
+		//Convert the record to update to a Student object
+		
+		
+		Student student = da.getStudentListById(id).get(0);	
+	    //comunicate with object with the form for modification
+		
+		model.addAttribute("student",student );
+		
+		//Delete the current version
+		da.deleteStudentById(id);
+
+		
+		//update the list to be displayed/prepared for the new version
+		
+		model.addAttribute("studentList",da.getStudentList());
+		
 	
-	
-	return "index";
+		
+		
+		
+	    return "index";
 	
 	
 	

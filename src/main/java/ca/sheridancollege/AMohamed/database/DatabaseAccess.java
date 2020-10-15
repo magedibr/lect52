@@ -106,15 +106,48 @@ public void deleteStudentById(Long ID)	{
 	
 	if(rowsAffected >0)System.out.println("Student with id"+ID+"has been deleted");
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }	
+public List<Student> getStudentListById(Long ID) {
+
+MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+String query = "SELECT * FROM student WHERE id = :id";
+
+
+//Value to replace the named parameter
+namedParameters.addValue("id", ID);
+
+
+//Return the list matching the query
+return jdbc.query(query, namedParameters, new BeanPropertyRowMapper<Student>(Student.class));
+
+}	
 	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
