@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+
+
 import ca.sheridancollege.AMohamed.beans.Student;
 
 
@@ -82,6 +84,27 @@ public class DatabaseAccess {
 	}
 	
 	
+public void deleteStudentById(Long ID)	{
+	
+		
+	
+	MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+	
+	
+   //Query//Must be the same as sd the addVAlue for the named parameter below
+	String querey = "DELETE FROM student WHERE id = :id";
+	
+	
+	// Specify the value of the names parameter
+//"id"
+	namedParameters.addValue("id", ID);
+	
+     //Perform delete
+	
+	int rowsAffected = jdbc.update(querey, namedParameters);
+	
+	if(rowsAffected >0)System.out.println("Student with id"+ID+"has been deleted");
 	
 	
 	
@@ -91,16 +114,7 @@ public class DatabaseAccess {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}	
 	
 	
 }

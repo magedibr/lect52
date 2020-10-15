@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+
 
 import ca.sheridancollege.AMohamed.beans.Student;
 import ca.sheridancollege.AMohamed.database.DatabaseAccess;
@@ -49,8 +52,42 @@ public String insertStudent(Model model,@ModelAttribute Student student) {
 	return "index";
 }	
 	
+	@GetMapping("/deleteStudentById/{id}")
+public String deleteStudentById(Model model,@PathVariable Long id) {
+	
+
+		
+		//delete record from DB
+		da.deleteStudentById(id);
+		
+		//Update list
+		model.addAttribute("studentList", da.getStudentList());
+		
+		//after every operation
+		model.addAttribute("student",new Student());
+		
+		
+		
+	    return "index";
+
+	
+}	
 	
 	
 	
+	
+	
+	
+	
+	@GetMapping("/editStudentById/{id}")
+public String editStudentById(Model model,@PathVariable Long id) {
+	
+	
+	
+	return "index";
+	
+	
+	
+}
 	
 }
