@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>index Page</title>
+</head>
+<style>
+div {
+  border: 5px sold pink ;
+   max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  text-align:center;
+
+}
+
+
+
+
+
+
+</style>
+<body>
+
+<ul>
+<h1>List of Students</h1>
+</ul>
+<br><br><br>
+<table th:if="${studentList != null AND studentList != ''}">
+
+<tr th:each="s: ${studentList}">
+<td th:text="${s.name}"></td>
+
+<td><a th:href="@{/editStudentById/}+${s.id}">Edit</a></td>
+<td><a th:href="@{/deleteStudentById/}+${s.id}">Delete</a></td>
+
+</tr>
+</table>
+
+
+<form method="post" action="" th:action=@{/insertStudent} th:object="${student}">
+
+
+<div >
+
+<input type="hidden" name="id" th:field="*{id}"/>
+Name: <input type="text" name="name" th:field="*{name}" /><br>
+
+<input type="submit" value="Insert!">
+
+
+
+</div>
+
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
